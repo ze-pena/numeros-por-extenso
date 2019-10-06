@@ -18,3 +18,4 @@ Existem três pastas no projeto.
 * 'js' guarda arquivos de script da página e modulo/contrutor do angular;
 * 'fw' pasta destinada aos frameworks. Atualmente contém apenas o arquivos do angular.js.
 
+use o arquivo 'index.html' para abrir a aplicação no browser!
