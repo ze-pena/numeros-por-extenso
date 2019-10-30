@@ -17,7 +17,7 @@
 				pelo arquivo em javascript 'modulo.js'
 		-->
 		<form id="frm" name="frm" ng-app="modulador" ng-controller="controlador">
-			<label id="lb-entrada" for="entrada">Informe o valor a ser convertido (0 a 999.99):</label>
+			<label id="lb-entrada" for="entrada">Informe o valor a ser convertido (0 a 999999.99):</label>
 			<br>
 			<input type="text" id="entrada" name="entrada" ng-model="valor" ng-pattern="validador"/>
 			<button class="bt" id="bt-converte" name="converte" ng-click="converte()">converter</button>

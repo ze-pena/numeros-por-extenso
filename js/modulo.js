@@ -63,14 +63,55 @@ Usa como parametro mesmo valor que a 'separaDecimais()', apenas
 separando a parte inteira do numero.
 */
 
+/*
+ESSA FUNÇÃO FOI ATUALIZADA!
+agora ela reutiliza a função 'montaFraseInteiro()' diretamente como callback
+para criar números maiores!
+*/
+
 function separaInteiro(num) {
+	let milhares;
+	let centenas;
 	let vetor = [];
-	let i = 0;
-	for (element of num) {
-		vetor[i] = element;
-		i++;
+	
+	if ((num > 999.99) && (num <= 999999.99)) {
+		milhares = parseInt(num/1000);
+		centenas = parseInt(num - (milhares * 1000));
+		let comparaMilhar = milhares;
+		milhares = String(milhares);
+		vetor = [];
+		for (element of milhares) {
+			vetor.push(element);
+		}
+		milhares = montaFraseInteiro(vetor);
+		let comparaCentena = centenas;
+		centenas = String(centenas);
+		vetor = [];
+		for (element of centenas) {
+			vetor.push(element);
+		}
+		centenas = montaFraseInteiro(vetor);
+		if (comparaMilhar != 1 && comparaCentena == 0) {
+			return milhares + ' Mil';
+		} else if (comparaMilhar == 1 && comparaCentena == 0) {
+			return 'Mil';
+		}else if (comparaMilhar == 1 && comparaCentena > 100) {
+			return 'Mil ' + centenas;
+		} else if (comparaMilhar == 1 && comparaCentena <= 100) {
+			return 'Mil e ' + centenas;
+		} else if (comparaMilhar != 1 && comparaCentena <= 100) {
+			return milhares + ' Mil e ' + centenas;
+		} else {
+			return milhares + ' Mil ' + centenas;
+		}
+	} else if (num <= 999.99) {
+		vetor = [];
+		for (element of num) {
+			vetor.push(element);
+		}
+		centenas = montaFraseInteiro(vetor);
+		return centenas;
 	}
-	return vetor;
 }
 
 /*
@@ -217,6 +258,13 @@ Ela usa todas as outras três funções anteriores para retornar um resultado pa
 através do angular.
 */
 
+/*
+ESSA FUNÇÃO FOI ATUALIZADA!
+Ao invés de converter o número em vetor numa função para em seguida chamar outra 
+função para montar a frase, agora, a função que é chamada, converte diretamente em 
+vetor e monta a frase apenas instanciando a função na variável 'inteiro'.
+*/
+
 function trataNumero(num) {
 	num = String(num);
 	let inteiro;
@@ -232,7 +280,7 @@ function trataNumero(num) {
 			inteiro = separaInteiro(inteiro);
 			decimos = String(parseFloat(num));
 			decimos = separaDecimos(decimos);
-			return montaFraseInteiro(inteiro) + " ponto " + montaFraseDecimos(decimos);
+			return inteiro + " ponto " + montaFraseDecimos(decimos);
 		} else if (c.test(num)) {
 			num = num.replace(/[,.]+/i, ".");
 			decimos = String(parseFloat(num));
@@ -242,7 +290,7 @@ function trataNumero(num) {
 	} else {
 		inteiro = String(parseInt(num));
 		inteiro = separaInteiro(inteiro);
-		return montaFraseInteiro(inteiro);
+		return inteiro;
 	}
 }
 
@@ -278,7 +326,7 @@ modulo.controller('controlador', function($scope) {
 		} else if (afb.test($scope.valor)) {
 			$scope.resultado = "Entrada inválida. Digite apenas números!";
 			return $scope.resultado;
-		} else if ($scope.valor > 999.99) {
+		} else if ($scope.valor > 999999.99) {
 			$scope.resultado = "Entrada inválida. O valor informado esta acima do limite!";
 		} else if ($scope.valor <= -1) {
 			$scope.resultado = "Entrada inválida. O valor informado esta abaixo do limite!";
