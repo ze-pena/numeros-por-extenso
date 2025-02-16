@@ -11,7 +11,7 @@ function debouncer(event, callback, delay = 1000) {
 
   if (fieldValue && fieldValue === eventValue) {
     event.target.dataset.timeoutId = "";
-    return
+    return;
   }
 
   const id = setTimeout(() => {
@@ -22,10 +22,22 @@ function debouncer(event, callback, delay = 1000) {
   event.target.dataset.timeoutId = id;
 }
 
+function toggleOutput(content = "") {
+  const isVisible = Boolean(content);
+  const textOutput = document.getElementById("text-output");
+  const parentOutput = textOutput.parentElement;
+
+  textOutput.innerText = content;
+  parentOutput.classList.replace(isVisible ? "hidden" : "visible", isVisible ? "visible" : "hidden");
+}
 
 export function handleInput(event) {
-  event.target.value = integerNumberMask(event.target.value)
+  const numberInput = document.getElementById("number-input");
+
+  numberInput.value = integerNumberMask(event.target.value);
+  toggleOutput("Digitando...");
+
   debouncer(event, () => {
-    console.log("Eu funcionei!");
+    toggleOutput(numberInput.value ? "Eu funcionei!" : "");
   }, 500)
 }
