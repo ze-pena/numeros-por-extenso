@@ -3,15 +3,12 @@ import { handleInput } from "../events/input.js"
 function buildAppName() {
   const container = document.createElement("div");
   const title = document.createElement("h1");
-  const icon = document.createElement("div");
 
   container.classList.add("name");
   title.classList.add("name-title");
-  icon.classList.add("name-icon");
 
-  title.innerText = "Números por extenso";
+  title.innerText = "#números por extenso@!";
   container.appendChild(title);
-  container.appendChild(icon);
   return container;
 }
 
@@ -26,6 +23,8 @@ function buildAppInput() {
   icon.classList.add("label-icon");
   input.classList.add("label-field");
 
+  icon.innerHTML = "#";
+  input.id = "number-input";
   input.setAttribute("title", "number-input");
   input.setAttribute("type", "text");
   input.setAttribute("placeholder", "Insira o número desejado.");
@@ -41,8 +40,10 @@ function buildAppOutput() {
   const container = document.createElement("div");
   const output = document.createElement("p");
 
-  container.classList.add("output");
+  container.classList.add("output", "hidden");
   output.classList.add("output-field");
+
+  output.id = "text-output"
 
   container.appendChild(output);
   return container;
