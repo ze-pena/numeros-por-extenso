@@ -1,6 +1,5 @@
 #app {
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
@@ -17,25 +16,16 @@
   }
 
 .name {
-  position: relative;
-  align-self: center;
+  flex-grow: 1;
   display: flex;
-  padding: 32px 40px 16px;
-  border-radius: 24px;
-  box-shadow: var(--box-shadow);
-  background-color: var(--dark-primary-1);
+  align-items: flex-end;
+  justify-content: center;
 }
-  .name:before {
-    position: absolute;
-    content: "";
-    right: 24px;
-    top: 99%;
-    border-top: 12px solid var(--dark-primary-1);
-    border-right: 12px solid transparent;
-    border-left: 12px solid transparent;
-  }
 
   .name-title {
+    position: relative;
+    height: 110px;
+    padding: 32px 40px 0;
     font-family: "Oswald", sans-serif;
     font-weight: 800;
     font-size: 2.45rem;
@@ -43,7 +33,20 @@
     text-align: center;
     text-transform: uppercase;
     color: var(--dark-neutral-6);
+    border-radius: 24px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-primary-1);
   }
+
+    .name-title:before {
+      position: absolute;
+      content: "";
+      right: 40px;
+      top: 99%;
+      border-top: 12px solid var(--dark-primary-1);
+      border-right: 12px solid transparent;
+      border-left: 12px solid transparent;
+    }
 
   .name-icon {
     cursor: pointer;
@@ -52,16 +55,17 @@
 
 .input {
   display: flex;
-  height: 45px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
-  background-color: var(--dark-neutral-5);
+  justify-content: center;
 }
 
-  .input-label {
+.input-label {
     flex-grow: 1;
     display: flex;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-neutral-5);
   }
 
     .label-icon {
@@ -89,37 +93,48 @@
     }
 
 .output {
-  position: relative;
-  align-self: center;
-  padding: 16px 32px 32px;
-  border-radius: 24px;
-  box-shadow: var(--box-shadow);
-  background-color: var(--dark-neutral-5);
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-  .output.hidden {
-    display: none;
+  .output-field {
+    position: relative;
+    height: 70px;
+    padding: 16px 32px 0;
+    font-family: "Dosis", sans-serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--dark-neutral-1);
+    border-radius: 24px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-neutral-5);
   }
 
-  .output.visible {
-    display: flex;
+  .output-field.hidden {
+    visibility: hidden;
   }
 
-  .output:before {
+  .output-field.visible {
+    visibility: visible;
+  }
+
+  .output-field.error {
+    background-color: var(--dark-secondary-1);
+  }
+
+  .output-field:before {
     position: absolute;
     content: "";
-    left: 24px;
+    left: 32px;
     bottom: 99%;
     border-bottom: 12px solid var(--dark-neutral-5);
     border-right: 12px solid transparent;
     border-left: 12px solid transparent;
   }
 
-  .output-field {
-    flex-grow: 1;
-    font-family: "Dosis", sans-serif;
-    font-size: 1.85rem;
-    font-weight: 600;
-    text-align: center;
-    color: var(--dark-neutral-1);
+  .output-field.error:before {
+    border-bottom-color: var(--dark-secondary-1);
   }
