@@ -25,7 +25,7 @@ function buildAppInput() {
 
   icon.innerHTML = "#";
   input.id = "number-input";
-  input.setAttribute("title", "number-input");
+  input.setAttribute("title", "Entrada de valor");
   input.setAttribute("type", "text");
   input.setAttribute("placeholder", "Insira o número desejado.");
   input.addEventListener("input", handleInput);
@@ -40,8 +40,8 @@ function buildAppOutput() {
   const container = document.createElement("div");
   const output = document.createElement("p");
 
-  container.classList.add("output", "hidden");
-  output.classList.add("output-field");
+  container.classList.add("output");
+  output.classList.add("output-field", "hidden");
 
   output.id = "text-output"
 
