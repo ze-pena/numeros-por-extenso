@@ -1,4 +1,5 @@
-import { integerNumberMask } from "../utils/masks.js";
+import { integerNumberMask } from "../utils/masks/numbers.js";
+import { convertNumberToString } from "../utils/converters/numbers.js";
 
 function debouncer(event, callback, delay = 1000) {
   const timeoutId = event.target.dataset.timeoutId;
@@ -22,13 +23,43 @@ function debouncer(event, callback, delay = 1000) {
   event.target.dataset.timeoutId = id;
 }
 
-function toggleOutput(content = "") {
+function toggleOutput(content = "", hasError = false) {
   const isVisible = Boolean(content);
   const textOutput = document.getElementById("text-output");
-  const parentOutput = textOutput.parentElement;
+
+  if (hasError) {
+    textOutput.classList.add("error");
+  }
+
+  if (!hasError && textOutput.classList.contains("error")) {
+    textOutput.classList.remove("error")
+  }
 
   textOutput.innerText = content;
-  parentOutput.classList.replace(isVisible ? "hidden" : "visible", isVisible ? "visible" : "hidden");
+  textOutput.classList.replace(isVisible ? "hidden" : "visible", isVisible ? "visible" : "hidden");
+}
+
+
+function validateEntry(value) {
+  if (!value) {
+    toggleOutput();
+    return;
+  }
+
+  if (value.length > 4) {
+    toggleOutput("Digite somente valores entra 0 e 9999", true);
+    return;
+  }
+
+  if (value.includes(',')) {
+    const [integers, decimals] = value.split(",");
+    const convertedIntegers = convertNumberToString(integers);
+    const convertedDecimals = convertNumberToString(decimals);
+    toggleOutput(`${convertedIntegers} e ${convertedDecimals} décimos`);
+    return;
+  }
+
+  toggleOutput(convertNumberToString(value));
 }
 
 export function handleInput(event) {
@@ -38,6 +69,6 @@ export function handleInput(event) {
   toggleOutput("Digitando...");
 
   debouncer(event, () => {
-    toggleOutput(numberInput.value ? "Eu funcionei!" : "");
+    validateEntry(event.target.value)
   }, 500)
 }
