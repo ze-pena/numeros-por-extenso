@@ -15,8 +15,6 @@ export function integerNumberMask(value) {
 
   let newValue = typeof value === "number" ? String(value) : value;
 
-  if (isNaN(newValue)) return value;
-
   newValue = newValue
     .slice(0, 4)
     .replace(/\D/g, "")
