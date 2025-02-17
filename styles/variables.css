@@ -1,0 +1,34 @@
+/* Variáveis da aplicação */
+:root {
+  /* Cores primárias coloridas */
+  --dark-primary-1: #96dcbe;
+  --dark-secondary-1: #e67676;
+
+  /* Cores neutras */
+  --dark-neutral-1: #ffffff;
+  --dark-neutral-2: #d7d6dc;
+  --dark-neutral-3: #c3c1ca;
+  --dark-neutral-4: #9b98a8;
+  --dark-neutral-5: #5f5a74;
+  --dark-neutral-6: #373150;
+
+  /* Cores de sombras dos elementos */
+  --box-shadow: 0px 3px 8px #0000003d;
+}
+
+/* Fontes da aplicação */
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  src: url(../assets/fonts/Dosis/Dosis-VariableFont_wght.ttf);
+	font-weight: 125 950;
+  font-stretch: 75% 125%;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  src: url(../assets/fonts/Oswald/Oswald-VariableFont_wght.ttf);
+	font-weight: 125 950;
+  font-stretch: 75% 125%;
+}

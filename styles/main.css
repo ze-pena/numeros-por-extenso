@@ -1,0 +1,140 @@
+#app {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--dark-neutral-6);
+}
+
+  .app-converter {
+    display: flex;
+    flex-basis: 600px;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 24px;
+  }
+
+.name {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+  .name-title {
+    position: relative;
+    min-height: 125px;
+    padding: 32px 40px;
+    font-family: "Oswald", sans-serif;
+    font-weight: 800;
+    font-size: 2.45rem;
+    line-height: 3.65rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--dark-neutral-6);
+    border-radius: 24px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-primary-1);
+  }
+
+    .name-title:before {
+      position: absolute;
+      content: "";
+      right: 40px;
+      top: 99%;
+      border-top: 12px solid var(--dark-primary-1);
+      border-right: 12px solid transparent;
+      border-left: 12px solid transparent;
+    }
+
+  .name-icon {
+    cursor: pointer;
+    font-size: 3rem;
+  }
+
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+.input-label {
+    flex-grow: 1;
+    display: flex;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-neutral-5);
+  }
+
+    .label-icon {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 45px;
+      font-family: "Dosis", sans-serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--dark-primary-1);
+    }
+
+    .label-field {
+      flex-grow: 1;
+      padding: 8px 16px;
+      font-family: "Dosis", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark-neutral-6);
+      border: 0;
+      outline: 0;
+      background-color: var(--dark-neutral-2);
+    }
+
+.output {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+  .output-field {
+    position: relative;
+    min-height: 70px;
+    padding: 16px 32px;
+    font-family: "Dosis", sans-serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--dark-neutral-1);
+    border-radius: 24px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-neutral-5);
+  }
+
+  .output-field.hidden {
+    visibility: hidden;
+  }
+
+  .output-field.visible {
+    visibility: visible;
+  }
+
+  .output-field.error {
+    background-color: var(--dark-secondary-1);
+  }
+
+  .output-field:before {
+    position: absolute;
+    content: "";
+    left: 32px;
+    bottom: 99%;
+    border-bottom: 12px solid var(--dark-neutral-5);
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+  }
+
+  .output-field.error:before {
+    border-bottom-color: var(--dark-secondary-1);
+  }
