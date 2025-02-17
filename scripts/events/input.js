@@ -3,21 +3,13 @@ import { convertNumberToString } from "../utils/converters/numbers.js";
 
 function debouncer(event, callback, delay = 1000) {
   const timeoutId = event.target.dataset.timeoutId;
-  const eventValue = event.target.value;
-  const fieldValue = event.target.dataset.fieldValue;
 
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
 
-  if (fieldValue && fieldValue === eventValue) {
-    event.target.dataset.timeoutId = "";
-    return;
-  }
-
   const id = setTimeout(() => {
     callback();
-    event.target.dataset.fieldValue = eventValue;
   }, delay);
 
   event.target.dataset.timeoutId = id;
@@ -64,8 +56,14 @@ function validateEntry(value) {
 
 export function handleInput(event) {
   const numberInput = document.getElementById("number-input");
+  const newValue = integerNumberMask(event.target.value);
+  const oldValue = numberInput.dataset.fieldValue;
 
-  numberInput.value = integerNumberMask(event.target.value);
+  numberInput.value = newValue;
+
+  if (oldValue && oldValue === newValue) return;
+
+  numberInput.dataset.fieldValue = newValue
   toggleOutput("Digitando...");
 
   debouncer(event, () => {
